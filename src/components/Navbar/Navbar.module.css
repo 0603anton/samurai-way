@@ -4,7 +4,14 @@
 }
 
 .item{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.item a {
     color: white;
+    text-decoration: none;
 }
 
 .active{
