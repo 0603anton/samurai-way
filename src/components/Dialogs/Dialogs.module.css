@@ -7,6 +7,11 @@
     padding: 10px;
 }
 
+.companions a {
+    text-decoration: none;
+    color: white;
+}
+
 .chats {
     padding: 10px;
 }

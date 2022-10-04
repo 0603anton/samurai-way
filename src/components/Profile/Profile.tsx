@@ -1,16 +1,12 @@
 import React from 'react';
-import _ from "./Profile.module.css"
-import MyPosts from "./MyPosts/MyPosts";
+import _ from './Profile.module.css'
+import MyPosts from './MyPosts/MyPosts';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 export const Profile = () => {
     return (
         <div>
-            <div>
-                <img className={_.contentImg} src="https://wallpaperaccess.com/full/1131217.jpg" alt=""/>
-            </div>
-            <div>
-                ava+description
-            </div>
+            <ProfileInfo/>
             <MyPosts/>
         </div>
     );
