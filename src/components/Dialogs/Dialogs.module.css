@@ -1,0 +1,12 @@
+.dialogs {
+    display: flex;
+    /*padding: 15px;*/
+}
+
+.companions {
+    padding: 10px;
+}
+
+.chats {
+    padding: 10px;
+}
