@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from './../Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
-import {CompanionPropsType} from "../Dialogs";
+import {CompanionType} from '../../../App';
 
-export const DialogItem = (props:CompanionPropsType) => {
+export const DialogItem = (props: CompanionType) => {
     return (
-            <div className={_.companion}>
-                <NavLink to={`/dialogs/${props.id}`}>{props.name}</NavLink>
-            </div>
+        <div className={_.companion}>
+            <NavLink to={`/dialogs/${props.id}`}>{props.name}</NavLink>
+        </div>
     );
 };
 

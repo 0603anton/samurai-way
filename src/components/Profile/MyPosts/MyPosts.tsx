@@ -1,19 +1,12 @@
 import React from 'react';
-import Post from "./Post/Post";
+import Post from './Post/Post';
+import {PostsPropsType} from '../Profile';
 
-const MyPosts = () => {
 
-    const posts = [
-        {di: 1, message: 'How, are you?', likesCount: 15},
-        {di: 2, message: 'It`s my first post', likesCount: 5},
-        {di: 3, message: 'Yo', likesCount: 5},
-        {di: 4, message: 'Yo', likesCount: 5},
-        {di: 5, message: 'Yo', likesCount: 5},
-        {di: 6, message: 'Yo', likesCount: 5},
-    ]
+const MyPosts = (props: PostsPropsType) => {
 
-    const postsElements = posts.map((el)=>{
-       return <Post message={el.message} likes={el.likesCount} />
+    const postsElements = props.posts.map((el) => {
+        return <Post message={el.message} likes={el.likesCount}/>
     })
 
     return (

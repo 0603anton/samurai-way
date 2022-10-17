@@ -1,46 +1,27 @@
 import React from 'react';
 import _ from './Dialogs.module.css'
+import {DialogItem} from './DialogItem/DialogItem';
+import {Message} from './Message/Message';
+import {CompanionType, MessageType} from '../../App';
 
-import {DialogItem} from "./DialogItem/DialogItem";
-import {Message} from "./Message/Message";
 
-export type CompanionPropsType = {
-    name: string
-    id: number
+export type DialogsPropsType = {
+    dialogsData: CompanionType[]
+    messageData: MessageType[]
 }
 
-export type MessagePropsType = {
-    message: string
-}
 
-export const Dialogs = () => {
-    const dialogsData = [
-        {id: 1, name: 'companion1'},
-        {id: 2, name: 'companion2'},
-        {id: 3, name: 'companion3'},
-        {id: 4, name: 'companion4'},
-        {id: 5, name: 'companion5'},
-        {id: 6, name: 'companion6'},
-    ]
+export const Dialogs = (props: DialogsPropsType) => {
 
-    const messageData = [
-        {di: 1, message: 'Hi'},
-        {di: 2, message: 'How are you?'},
-        {di: 3, message: 'Yo!'},
-        {di: 4, message: 'Yo!'},
-        {di: 5, message: 'Yo!'},
-        {di: 6, message: 'Yo!'},
-    ]
-
-    const dialogsElements = dialogsData.map((el) => {
+    const dialogsElements = props.dialogsData.map((el) => {
         return (
             <DialogItem name={el.name} id={el.id}/>
         )
     })
 
-    const messagesElement = messageData.map((el) => {
+    const messagesElement = props.messageData.map((el) => {
         return (
-            <Message message={el.message}/>
+            <Message message={el.message} id={el.id}/>
         )
     })
 
