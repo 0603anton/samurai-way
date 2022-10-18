@@ -1,22 +1,21 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {StatePropsType} from "../../index";
 
-export type PostsPropsType = {
-    posts: PostPropsType[]
-}
 
-type PostPropsType = {
+export type PostPropsType = {
     id: number
     message: string
     likesCount: number
 }
 
-export const Profile = (props: PostsPropsType) => {
+export const Profile = (props:StatePropsType) => {
+    debugger
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props}/>
         </div>
     );
 };

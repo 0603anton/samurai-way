@@ -1,9 +1,13 @@
 import React from 'react';
 import Post from './Post/Post';
-import {PostsPropsType} from '../Profile';
+import {PostPropsType} from "../Profile";
+import post from "./Post/Post";
 
+type MyPostPropsType = {
+    posts:PostPropsType[]
+}
 
-const MyPosts = (props: PostsPropsType) => {
+const MyPosts = (props:MyPostPropsType) => {
 
     const postsElements = props.posts.map((el) => {
         return <Post message={el.message} likes={el.likesCount}/>
