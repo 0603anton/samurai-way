@@ -8,19 +8,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import { StatePropsType} from "./index";
+import {StateType} from './State/state';
 
-export type CompanionType = {
-    name: string
-    id: number
-}
-
-export type MessageType = {
-    id: number
-    message: string
-}
-
-function App(props:StatePropsType) {
+function App(props: StateType) {
 
     return (
         <BrowserRouter>
@@ -29,9 +19,10 @@ function App(props:StatePropsType) {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/dialogs"
-                           render={() => <Dialogs dialogsData={props.state.dialogsData} messageData={props.state.messageData}/>}/>
+                           render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
+                                                  messageData={props.state.dialogsPage.messageData}/>}/>
 
-                    <Route path="/profile" render={() => <Profile posts={props.state.posts}/>}/>
+                    <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>

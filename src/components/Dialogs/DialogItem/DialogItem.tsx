@@ -1,7 +1,8 @@
 import React from 'react';
 import _ from './../Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
-import {CompanionType} from '../../../App';
+import {CompanionType} from '../../../State/state';
+
 
 export const DialogItem = (props: CompanionType) => {
     return (

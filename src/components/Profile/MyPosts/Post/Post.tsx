@@ -1,18 +1,16 @@
 import React from 'react';
 import _ from './Post.module.css'
+import {PostType} from '../../../../State/state';
 
-type PostPropsType ={
-    message:string;
-    likes:number;
-}
-
-const Post = (props:PostPropsType) => {
+const Post = (props: PostType) => {
     return (
         <div>
-            <img className={_.img} src="https://img.freepik.com/premium-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg" alt="avatar"/>
+            <img className={_.img}
+                 src="https://img.freepik.com/premium-vector/bearded-man-avatar-man-vector-portrait_9385-36.jpg"
+                 alt="avatar"/>
             {props.message}
             <div>
-            <span>{`likes: ${props.likes}`}</span>
+                <span>{`likes: ${props.likesCount}`}</span>
             </div>
         </div>
     );

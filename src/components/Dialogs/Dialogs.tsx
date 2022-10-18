@@ -2,16 +2,9 @@ import React from 'react';
 import _ from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {CompanionType, MessageType} from '../../App';
+import {DialogsPageType} from '../../State/state';
 
-
-export type DialogsPropsType = {
-    dialogsData: CompanionType[]
-    messageData: MessageType[]
-}
-
-
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = (props: DialogsPageType) => {
 
     const dialogsElements = props.dialogsData.map((el) => {
         return (
