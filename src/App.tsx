@@ -9,6 +9,8 @@ import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
 import {StateType} from './State/state';
+import {addPost} from "./State/state";
+
 
 function App(props: StateType) {
 
@@ -22,7 +24,9 @@ function App(props: StateType) {
                            render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
                                                   messageData={props.state.dialogsPage.messageData}/>}/>
 
-                    <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}/>}/>
+                    <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
+                                                                  addPostCallback={addPost}
+                    />}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>

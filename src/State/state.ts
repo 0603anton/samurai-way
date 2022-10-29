@@ -1,5 +1,11 @@
-export type ProfilePageType = {
+export type ProfilePagePropsType = {
     posts: PostType[]
+    addPostCallback:(postMassage: string)=>void
+}
+
+export type MyPostPropsType = {
+    posts: PostType[]
+    addPost:(postMassage: string)=>void
 }
 
 export type PostType = {
@@ -24,13 +30,27 @@ export type MessageType = {
     message: string
 }
 
+type ProfilePageType={
+    posts: PostType[]
+}
+
 export type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
 }
 
 export type StateType = {
-    state: RootStateType
+    state: RootStateType,
+}
+
+
+export const addPost = (postMassage:string) => {
+    const newPost:PostType = {
+        id:121,
+        message:postMassage,
+        likesCount:10
+    };
+    state.profilePage.posts.push(newPost)
 }
 
 export const state: RootStateType = {
@@ -60,6 +80,9 @@ export const state: RootStateType = {
             {id: 4, message: 'Yo', likesCount: 5},
             {id: 5, message: 'Yo', likesCount: 5},
             {id: 6, message: 'Yo', likesCount: 5},
-        ]
-    }
+        ],
+        // addPost:addPost // Функцию почнму то требует не через пропсы, а чтобы она была в этом обЪекте
+    },
 }
+
+
