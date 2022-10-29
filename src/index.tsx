@@ -1,11 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import {state} from './State/state';
-import {addPost} from "./State/state";
+import {rerenderEntireTree} from './render';
 
-ReactDOM.render(
-    <App state={state}/>,
-    document.getElementById('root')
-);
+
+// let rerenderEntireTree = () => {
+//     ReactDOM.render(
+//         <App state={state}/>,
+//         document.getElementById('root')
+//     );
+// }
+
+rerenderEntireTree(state);

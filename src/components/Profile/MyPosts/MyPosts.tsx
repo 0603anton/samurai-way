@@ -14,10 +14,12 @@ const MyPosts = (props: MyPostPropsType) => {
     const newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const onButtonClickAddPostHandler = () => {
+
         // let text = newPostElement.current ? newPostElement.current.value : `---` вместо этой строки if`ы
-        if (newPostElement.current){
-        props.addPost(newPostElement.current.value)
-            }
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+            newPostElement.current.value = ``;
+        }
     }
 
     // function onTextAreaHandler(e:ChangeEvent<HTMLTextAreaElement>) {

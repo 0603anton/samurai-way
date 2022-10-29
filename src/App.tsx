@@ -8,11 +8,11 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {StateType} from './State/state';
-import {addPost} from "./State/state";
+import {StatePropsType, StateType} from './State/state';
+import {addPost} from './State/state';
 
 
-function App(props: StateType) {
+function App(props: StatePropsType) {
 
     return (
         <BrowserRouter>

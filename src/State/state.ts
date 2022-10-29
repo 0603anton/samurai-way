@@ -1,11 +1,13 @@
+import {rerenderEntireTree} from '../render';
+
 export type ProfilePagePropsType = {
     posts: PostType[]
-    addPostCallback:(postMassage: string)=>void
+    addPostCallback: (postMassage: string) => void
 }
 
 export type MyPostPropsType = {
     posts: PostType[]
-    addPost:(postMassage: string)=>void
+    addPost: (postMassage: string) => void
 }
 
 export type PostType = {
@@ -30,7 +32,7 @@ export type MessageType = {
     message: string
 }
 
-type ProfilePageType={
+type ProfilePageType = {
     posts: PostType[]
 }
 
@@ -40,17 +42,23 @@ export type RootStateType = {
 }
 
 export type StateType = {
-    state: RootStateType,
+    state: RootStateType
+}
+
+export type StatePropsType = {
+    state: RootStateType
+    addPost: (postMassage: string) => void
 }
 
 
-export const addPost = (postMassage:string) => {
-    const newPost:PostType = {
-        id:121,
-        message:postMassage,
-        likesCount:10
+export const addPost = (postMassage: string) => {
+    const newPost: PostType = {
+        id: 121,
+        message: postMassage,
+        likesCount: 10
     };
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 
 export const state: RootStateType = {
