@@ -2,12 +2,16 @@ import {rerenderEntireTree} from '../render';
 
 export type ProfilePagePropsType = {
     posts: PostType[]
-    addPostCallback: (postMassage: string) => void
+    updateNewPostText:(newText:string)=>void
+    addPostCallback: () => void
+    newPostText:string
 }
 
 export type MyPostPropsType = {
     posts: PostType[]
-    addPost: (postMassage: string) => void
+    addPost: () => void
+    updateNewPostText:(newText:string)=>void
+    newPostText:string
 }
 
 export type PostType = {
@@ -32,14 +36,12 @@ export type MessageType = {
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: PostType[]
+    newPostText:string
 }
 
-export type RootStateType = {
-    dialogsPage: DialogsPageType
-    profilePage: ProfilePageType
-}
+
 
 export type StateType = {
     state: RootStateType
@@ -48,16 +50,28 @@ export type StateType = {
 export type StatePropsType = {
     state: RootStateType
     addPost: (postMassage: string) => void
+    updateNewPostText:(newText:string)=>void
+}
+
+export type RootStateType = {
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
 }
 
 
-export const addPost = (postMassage: string) => {
+export const addPost = () => {
     const newPost: PostType = {
         id: 121,
-        message: postMassage,
+        message: state.profilePage.newPostText,
         likesCount: 10
     };
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ``
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText:string) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
 
@@ -89,7 +103,8 @@ export const state: RootStateType = {
             {id: 5, message: 'Yo', likesCount: 5},
             {id: 6, message: 'Yo', likesCount: 5},
         ],
-        // addPost:addPost // Функцию почнму то требует не через пропсы, а чтобы она была в этом обЪекте
+        newPostText: `blalba`,
+        // addPost:addPost // Функцию почему-то требует не через пропсы, а чтобы она была в этом объекте
     },
 }
 

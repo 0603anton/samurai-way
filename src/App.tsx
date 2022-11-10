@@ -26,6 +26,8 @@ function App(props: StatePropsType) {
 
                     <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
                                                                   addPostCallback={addPost}
+                                                                  updateNewPostText={props.updateNewPostText}
+                                                                  newPostText={props.state.profilePage.newPostText}
                     />}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>

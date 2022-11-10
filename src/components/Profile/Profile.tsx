@@ -8,7 +8,7 @@ export const Profile = (props: ProfilePagePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts} addPost={props.addPostCallback}/>
+            <MyPosts newPostText={props.newPostText} posts={props.posts} addPost={props.addPostCallback} updateNewPostText={props.updateNewPostText}/>
         </div>
     );
 };
