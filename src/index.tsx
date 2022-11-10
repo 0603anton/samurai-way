@@ -1,14 +1,17 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
-import {state} from './State/state';
-import {rerenderEntireTree} from './render';
+import App from './App';
+import {addPost, RootStateType, state, subscribe, updateNewPostText} from './State/state';
 
 
-// let rerenderEntireTree = () => {
-//     ReactDOM.render(
-//         <App state={state}/>,
-//         document.getElementById('root')
-//     );
-// }
 
+let rerenderEntireTree = (state: RootStateType) => {
+    ReactDOM.render(
+        <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>,
+        document.getElementById('root')
+    );
+}
 rerenderEntireTree(state);
+
+subscribe(rerenderEntireTree)
