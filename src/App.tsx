@@ -14,7 +14,7 @@ import {StatePropsType, StateType} from './State/state';
 function App(props: StatePropsType) {
 
     return (
-        <BrowserRouter>
+        // <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
@@ -24,8 +24,9 @@ function App(props: StatePropsType) {
                                                   messageData={props.state.dialogsPage.messageData}/>}/>
 
                     <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
-                                                                  addPostCallback={props.addPost}
-                                                                  updateNewPostText={props.updateNewPostText}
+                                                                  dispatch={props.dispatch}
+                                                                  // addPostCallback={props.addPost}
+                                                                  // updateNewPostText={props.updateNewPostText}
                                                                   newPostText={props.state.profilePage.newPostText}
                     />}/>
                     <Route path="/news" component={News}/>
@@ -33,7 +34,7 @@ function App(props: StatePropsType) {
                     <Route path="/settings" component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
+        // </BrowserRouter>
     );
 }
 

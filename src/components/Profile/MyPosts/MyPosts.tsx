@@ -1,6 +1,6 @@
 import React, {ChangeEvent, RefObject, useState} from 'react';
 import Post from './Post/Post';
-import {MyPostPropsType, ProfilePagePropsType} from '../../../State/state';
+import {MyPostPropsType, ProfilePagePropsType, UpdatePostTextActionType} from '../../../State/state';
 
 
 const MyPosts = (props: MyPostPropsType) => {
@@ -22,7 +22,8 @@ const MyPosts = (props: MyPostPropsType) => {
         // }
         // старая реализация когда параметром передавали значение текстареа,
         // а теперь напрямую берём из стэйта, а туда передаём через хандлер в общем другой функцией
-        props.addPost()
+        // props.addPost()
+        props.dispatch({type:'ADD-POST'})
     }
 
     //    //реализация через use state
@@ -31,7 +32,10 @@ const MyPosts = (props: MyPostPropsType) => {
     // }
 
     function onCnahgeTextAreaHandler(e:ChangeEvent<HTMLTextAreaElement>) {
-        props.updateNewPostText(e.currentTarget.value)
+        // props.updateNewPostText(e.currentTarget.value)
+        let text = e.currentTarget.value
+        let action:UpdatePostTextActionType = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        props.dispatch(action)
         }
 
     // const onPostChangeHandler = () => {

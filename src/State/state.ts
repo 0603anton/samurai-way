@@ -1,17 +1,30 @@
-export type RootStorePropsType= {
+export type RootStorePropsType = {
     _state: RootStateType
-    getState: ()=>RootStateType
-    _callSubscriber:(state: RootStateType)=>void
-    addPost: () => void
-    updateNewPostText: (newText: string)=>void
-    subscribe: (observer: (state: RootStateType) => void)=>void
+    getState: () => RootStateType
+    _callSubscriber: (state: RootStateType) => void
+    // _addPost: () => void
+    // _updateNewPostText: (newText: string) => void
+    subscribe: (observer: (state: RootStateType) => void) => void
+    dispatch: (action: ActionType) => void
+}
+
+export type ActionType = AddPostActionType| UpdatePostTextActionType
+
+type AddPostActionType ={
+    type: 'ADD-POST'
+}
+
+export type UpdatePostTextActionType ={
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
 }
 
 export type MyPostPropsType = {
     posts: PostType[]
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    // addPost: () => void
+    // updateNewPostText: (newText: string) => void
     newPostText: string
+    dispatch: (action: ActionType) => void
 }
 
 export type PostType = {
@@ -47,8 +60,7 @@ export type StateType = {
 
 export type StatePropsType = {
     state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 export type RootStateType = {
@@ -58,13 +70,14 @@ export type RootStateType = {
 
 export type ProfilePagePropsType = {
     posts: PostType[]
-    updateNewPostText: (newText: string) => void
-    addPostCallback: () => void
+    dispatch: (action: ActionType) => void
+    // updateNewPostText: (newText: string) => void
+    // addPostCallback: () => void
     newPostText: string
 }
 
 
-export const store:RootStorePropsType = {
+export const store: RootStorePropsType = {
     _state: { // приватное свойство напрямую не использовать
         dialogsPage: {
             dialogsData: [
@@ -97,28 +110,46 @@ export const store:RootStorePropsType = {
             // addPost:addPost // Функцию почему-то требует не через пропсы, а чтобы она была в этом объекте
         },
     },
-    getState(){
+    getState() {
         return this._state
     },
-    _callSubscriber (state: RootStateType) {
+    _callSubscriber(state: RootStateType) {
         console.log(`smth`)
     },
-    addPost () {
-        const newPost: PostType = {
-            id: 121,
-            message: this._state.profilePage.newPostText,
-            likesCount: 10
-        };
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ``
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText (newText: string) {
-        store._state.profilePage.newPostText = newText
-        this._callSubscriber(store._state)
-    },
-    subscribe (observer: (state: RootStateType) => void) {
+    // _addPost() {
+    //     const newPost: PostType = {
+    //         id: 121,
+    //         message: this._state.profilePage.newPostText,
+    //         likesCount: 10
+    //     };
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostText = ``
+    //     this._callSubscriber(this._state)
+    // },
+    // _updateNewPostText(newText: string) {
+    //     this._state.profilePage.newPostText = action.newText! // TODO возможный ноль
+    //     this._callSubscriber(this._state)
+    // },
+    subscribe(observer: (state: RootStateType) => void) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action) { // {type:`ADD-POST`}
+        if (action.type === 'ADD-POST') {
+            // this._addPost
+            const newPost: PostType = {
+                id: 121,
+                message: this._state.profilePage.newPostText,
+                likesCount: 10
+            };
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ``
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            // this._updateNewPostText
+            this._state.profilePage.newPostText = action.newText // TODO возможный ноль
+            this._callSubscriber(this._state)
+        }
     }
 }
 
