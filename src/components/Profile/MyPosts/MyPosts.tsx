@@ -2,10 +2,10 @@ import React, {ChangeEvent, RefObject, useState} from 'react';
 import Post from './Post/Post';
 import {
     addPostActionCreator,
-    AddPostActionType,
+
     MyPostPropsType,
-    ProfilePagePropsType, updateNewPostTextAC,
-    UpdatePostTextActionType
+    updateNewPostTextAC,
+
 } from '../../../State/state';
 
 
@@ -40,7 +40,7 @@ const MyPosts = (props: MyPostPropsType) => {
     function onCnahgeTextAreaHandler(e: ChangeEvent<HTMLTextAreaElement>) {
         // props.updateNewPostText(e.currentTarget.value)
         let text = e.currentTarget.value
-        let action: UpdatePostTextActionType = updateNewPostTextAC(text)
+        let action = updateNewPostTextAC(text)
         props.dispatch(action)
     }
 

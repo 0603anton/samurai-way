@@ -89,7 +89,8 @@ export const store: RootStorePropsType = {
                 {id: 4, message: 'Yo!'},
                 {id: 5, message: 'Yo!'},
                 {id: 6, message: 'Yo!'},
-            ]
+            ],
+            
         },
         profilePage: {
             posts: [
