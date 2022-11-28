@@ -13,17 +13,6 @@ export type RootStorePropsType = {
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = AddPostActionType | UpdatePostTextActionType
-
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-export type UpdatePostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
 export type MyPostPropsType = {
     posts: PostType[]
     // addPost: () => void
@@ -160,17 +149,34 @@ export const store: RootStorePropsType = {
 }
 
 
-export const addPostActionCreator = (): AddPostActionType => {
+// export type ActionType = AddPostActionType | UpdatePostTextActionType
+
+export type ActionType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextAC>
+
+// export type AddPostActionType = {
+//     type: 'ADD-POST'
+// }
+
+// export type AddPostActionType = ReturnType<typeof addPostActionCreator> // автоматическое типизирование
+
+// export type UpdatePostTextActionType = {
+//     type: 'UPDATE-NEW-POST-TEXT'
+//     newText: string
+// }
+
+// export type UpdatePostTextActionType = ReturnType<typeof updateNewPostTextAC>
+
+export const addPostActionCreator = () => {
     return {
         type: ADD_POST
-    }
+    } as const // если типизация какого-то свойства не может определиться, то прописываем в конце объекта после второй } as const
 }
 //AC - action creator
-export const updateNewPostTextAC = (text: string): UpdatePostTextActionType => {
+export const updateNewPostTextAC = (text: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text
-    }
+    } as const
 }
 
 
