@@ -3,6 +3,8 @@
 const ADD_POST = `ADD-POST`
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
+const UPDATE_NEW_MESSAGE_DIALOG = `UPDATE_NEW_MESSAGE_DIALOG`
+
 export type RootStorePropsType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -31,6 +33,13 @@ export type PostType = {
 export type DialogsPageType = {
     dialogsData: CompanionType[]
     messageData: MessageType[]
+    newMessageText: string
+}
+export type DialogsPagePropsType = {
+    dialogsData: CompanionType[]
+    messageData: MessageType[]
+    newMessageText: string
+    dispatch: (action: ActionType) => void
 }
 
 export type CompanionType = {
@@ -90,7 +99,7 @@ export const store: RootStorePropsType = {
                 {id: 5, message: 'Yo!'},
                 {id: 6, message: 'Yo!'},
             ],
-            
+            newMessageText: `stringa`
         },
         profilePage: {
             posts: [
@@ -144,6 +153,9 @@ export const store: RootStorePropsType = {
             // this._updateNewPostText
             this._state.profilePage.newPostText = action.newText // TODO возможный ноль
             this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE_NEW_MESSAGE_DIALOG') {
+            this._state.dialogsPage.newMessageText = action.newTextDialog
+            this._callSubscriber(this._state)
         }
     },
 
@@ -152,7 +164,10 @@ export const store: RootStorePropsType = {
 
 // export type ActionType = AddPostActionType | UpdatePostTextActionType
 
-export type ActionType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextAC>
+export type ActionType =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof createNewMessageTextAC>
 
 // export type AddPostActionType = {
 //     type: 'ADD-POST'
@@ -180,7 +195,12 @@ export const updateNewPostTextAC = (text: string) => {
     } as const
 }
 
-
+export const createNewMessageTextAC = (text: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_DIALOG,
+        newTextDialog: text
+    } as const
+}
 
 
 

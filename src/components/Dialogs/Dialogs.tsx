@@ -1,10 +1,10 @@
-import React, {RefObject} from 'react';
+import React, {ChangeEvent, MouseEvent} from 'react';
 import _ from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogsPageType} from '../../State/state';
+import {createNewMessageTextAC, DialogsPagePropsType} from '../../State/state';
 
-export const Dialogs = (props: DialogsPageType) => {
+export const Dialogs = (props: DialogsPagePropsType) => {
 
     const dialogsElements = props.dialogsData.map((el) => {
         return (
@@ -18,10 +18,16 @@ export const Dialogs = (props: DialogsPageType) => {
         )
     })
 
-    const newMessageElement: RefObject<HTMLTextAreaElement> = React.createRef();
+    // const newMessageElement: RefObject<HTMLTextAreaElement> = React.createRef();
+    //
+    const textAreanewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value
+        let action = createNewMessageTextAC(text)
+        props.dispatch(action)
+    }
 
-    function addMessage() {
-        console.log(newMessageElement.current?.value)
+    function addMessage(e: MouseEvent<HTMLButtonElement>) {
+
     }
 
     return (
@@ -30,7 +36,7 @@ export const Dialogs = (props: DialogsPageType) => {
                 <div className={_.companions}>
                     {dialogsElements}
                     <div>
-                        <textarea ref={newMessageElement}></textarea>
+                        <textarea onChange={textAreanewMessageHandler}></textarea>
                         <button onClick={addMessage}>Add</button>
                     </div>
                 </div>

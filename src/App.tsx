@@ -15,25 +15,28 @@ function App(props: StatePropsType) {
 
     return (
         // <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Route path="/dialogs"
-                           render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
-                                                  messageData={props.state.dialogsPage.messageData}/>}/>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className="app-wrapper-content">
+                <Route path="/dialogs"
+                       render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
+                                              messageData={props.state.dialogsPage.messageData}
+                                              newMessageText={props.state.dialogsPage.newMessageText}
+                                              dispatch={props.dispatch}
+                       />}/>
 
-                    <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
-                                                                  dispatch={props.dispatch}
-                                                                  // addPostCallback={props.addPost}
-                                                                  // updateNewPostText={props.updateNewPostText}
-                                                                  newPostText={props.state.profilePage.newPostText}
-                    />}/>
-                    <Route path="/news" component={News}/>
-                    <Route path="/music" component={Music}/>
-                    <Route path="/settings" component={Settings}/>
-                </div>
+                <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
+                                                              dispatch={props.dispatch}
+                    // addPostCallback={props.addPost}
+                    // updateNewPostText={props.updateNewPostText}
+                                                              newPostText={props.state.profilePage.newPostText}
+                />}/>
+                <Route path="/news" component={News}/>
+                <Route path="/music" component={Music}/>
+                <Route path="/settings" component={Settings}/>
             </div>
+        </div>
         // </BrowserRouter>
     );
 }
