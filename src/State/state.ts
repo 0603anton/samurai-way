@@ -1,3 +1,8 @@
+// КОНСТАНТЫ
+
+const ADD_POST = `ADD-POST`
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
 export type RootStorePropsType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -8,13 +13,13 @@ export type RootStorePropsType = {
     dispatch: (action: ActionType) => void
 }
 
-export type ActionType = AddPostActionType| UpdatePostTextActionType
+export type ActionType = AddPostActionType | UpdatePostTextActionType
 
-type AddPostActionType ={
+export type AddPostActionType = {
     type: 'ADD-POST'
 }
 
-export type UpdatePostTextActionType ={
+export type UpdatePostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
@@ -150,11 +155,23 @@ export const store: RootStorePropsType = {
             this._state.profilePage.newPostText = action.newText // TODO возможный ноль
             this._callSubscriber(this._state)
         }
-    }
+    },
+
 }
 
 
-
+export const addPostActionCreator = (): AddPostActionType => {
+    return {
+        type: ADD_POST
+    }
+}
+//AC - action creator
+export const updateNewPostTextAC = (text: string): UpdatePostTextActionType => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
 
 
 

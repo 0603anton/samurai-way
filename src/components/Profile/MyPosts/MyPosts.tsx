@@ -1,6 +1,12 @@
 import React, {ChangeEvent, RefObject, useState} from 'react';
 import Post from './Post/Post';
-import {MyPostPropsType, ProfilePagePropsType, UpdatePostTextActionType} from '../../../State/state';
+import {
+    addPostActionCreator,
+    AddPostActionType,
+    MyPostPropsType,
+    ProfilePagePropsType, updateNewPostTextAC,
+    UpdatePostTextActionType
+} from '../../../State/state';
 
 
 const MyPosts = (props: MyPostPropsType) => {
@@ -17,13 +23,13 @@ const MyPosts = (props: MyPostPropsType) => {
     const onButtonClickAddPostHandler = () => {
         // let text = newPostElement.current ? newPostElement.current.value : `---` вместо этой строки if`ы
         // if (newPostElement.current) {
-            // props.addPost(newPostElement.current.value)
-            // newPostElement.current.value = ``;
+        // props.addPost(newPostElement.current.value)
+        // newPostElement.current.value = ``;
         // }
         // старая реализация когда параметром передавали значение текстареа,
         // а теперь напрямую берём из стэйта, а туда передаём через хандлер в общем другой функцией
         // props.addPost()
-        props.dispatch({type:'ADD-POST'})
+        props.dispatch(addPostActionCreator())
     }
 
     //    //реализация через use state
@@ -31,12 +37,12 @@ const MyPosts = (props: MyPostPropsType) => {
     //     setText(e.currentTarget.value)
     // }
 
-    function onCnahgeTextAreaHandler(e:ChangeEvent<HTMLTextAreaElement>) {
+    function onCnahgeTextAreaHandler(e: ChangeEvent<HTMLTextAreaElement>) {
         // props.updateNewPostText(e.currentTarget.value)
         let text = e.currentTarget.value
-        let action:UpdatePostTextActionType = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        let action: UpdatePostTextActionType = updateNewPostTextAC(text)
         props.dispatch(action)
-        }
+    }
 
     // const onPostChangeHandler = () => {
     //     if (newPostElement.current) {
