@@ -1,10 +1,9 @@
 // КОНСТАНТЫ
+import profileReducer, {ProfilePageActionType} from './profile-reducer';
+import dialogsReducer, {DialogsPageActionType} from './dialogs-reducer';
+import sidebarReducer from './sidebar-reducer';
 
-const ADD_POST = `ADD-POST`
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-
-const UPDATE_NEW_MESSAGE_DIALOG = `UPDATE-NEW-MESSAGE-DIALOG`
-const ADD_MESSAGE = 'ADD-MESSAGE'
+export type ActionType = DialogsPageActionType | ProfilePageActionType
 
 export type RootStorePropsType = {
     _state: RootStateType
@@ -35,6 +34,7 @@ export type DialogsPageType = {
     dialogsData: CompanionType[]
     messageData: MessageType[]
     newMessageText: string
+    sidebar: object
 }
 export type DialogsPagePropsType = {
     dialogsData: CompanionType[]
@@ -75,8 +75,6 @@ export type RootStateType = {
 export type ProfilePagePropsType = {
     posts: PostType[]
     dispatch: (action: ActionType) => void
-    // updateNewPostText: (newText: string) => void
-    // addPostCallback: () => void
     newPostText: string
 }
 
@@ -100,7 +98,8 @@ export const store: RootStorePropsType = {
                 {id: 5, message: 'Yo!'},
                 {id: 6, message: 'Yo!'},
             ],
-            newMessageText: `stringa`
+            newMessageText: `stringa`,
+            sidebar: {}
         },
         profilePage: {
             posts: [
@@ -112,7 +111,6 @@ export const store: RootStorePropsType = {
                 {id: 6, message: 'Yo', likesCount: 5},
             ],
             newPostText: `blalba`,
-            // addPost:addPost // Функцию почему-то требует не через пропсы, а чтобы она была в этом объекте
         },
     },
     getState() {
@@ -140,80 +138,22 @@ export const store: RootStorePropsType = {
     },
 
     dispatch(action) { // {type:`ADD-POST`}
-        if (action.type === ADD_POST) {
-            // this._addPost
-            const newPost: PostType = {
-                id: 121,
-                message: this._state.profilePage.newPostText,
-                likesCount: 10
-            };
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ``
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            // this._updateNewPostText
-            this._state.profilePage.newPostText = action.newText // TODO возможный ноль
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_MESSAGE_DIALOG) {
-            this._state.dialogsPage.newMessageText = action.newTextDialog
-            this._callSubscriber(this._state)
-        } else if (action.type === ADD_MESSAGE) {
-            let messageText = this._state.dialogsPage.newMessageText
-            this._state.dialogsPage.messageData.push({id: 6, message: messageText});
-            this._state.dialogsPage.newMessageText = '';
-            this._callSubscriber(this._state)
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.dialogsPage.sidebar = sidebarReducer(this._state.dialogsPage.sidebar, action)
+
+        this._callSubscriber(this._state)
+
     },
 
 }
 
 
-// export type ActionType = AddPostActionType | UpdatePostTextActionType
 
-export type ActionType =
-    ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof createNewMessageTextAC>
-    | ReturnType<typeof addNewMessageTextAC>
 
-// export type AddPostActionType = {
-//     type: 'ADD-POST'
-// }
 
-// export type AddPostActionType = ReturnType<typeof addPostActionCreator> // автоматическое типизирование
 
-// export type UpdatePostTextActionType = {
-//     type: 'UPDATE-NEW-POST-TEXT'
-//     newText: string
-// }
-
-// export type UpdatePostTextActionType = ReturnType<typeof updateNewPostTextAC>
-//AC - action creator
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    } as const // если типизация какого-то свойства не может определиться, то прописываем в конце объекта после второй } as const
-}
-
-export const updateNewPostTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    } as const
-}
-
-export const createNewMessageTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_DIALOG,
-        newTextDialog: text
-    } as const
-}
-
-export const addNewMessageTextAC = () => {
-    return {
-        type: ADD_MESSAGE,
-    } as const
-}
 
 
 

@@ -1,12 +1,11 @@
 import React, {ChangeEvent, RefObject, useState} from 'react';
 import Post from './Post/Post';
 import {
-    addPostActionCreator,
 
     MyPostPropsType,
-    updateNewPostTextAC,
 
 } from '../../../State/state';
+import {addPostActionCreator, updateNewPostTextAC} from '../../../State/profile-reducer';
 
 
 const MyPosts = (props: MyPostPropsType) => {

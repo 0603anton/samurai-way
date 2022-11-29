@@ -2,7 +2,8 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import _ from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {createNewMessageTextAC, addNewMessageTextAC, DialogsPagePropsType} from '../../State/state';
+import {DialogsPagePropsType} from '../../State/state';
+import {addNewMessageTextAC, createNewMessageTextAC} from '../../State/dialogs-reducer';
 
 export const Dialogs = (props: DialogsPagePropsType) => {
 
@@ -38,7 +39,7 @@ export const Dialogs = (props: DialogsPagePropsType) => {
                     {dialogsElements}
                     <div>
                         <textarea value={props.newMessageText} onChange={textAreanewMessageHandler}></textarea>
-                        // забыл для чего в пропсы кидал newMesageText
+                        {/*// забыл для чего в пропсы кидал newMesageText*/}
                         <button onClick={addMessage}>Add</button>
                     </div>
                 </div>
