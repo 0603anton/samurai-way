@@ -14,12 +14,9 @@ const profileReducer = (state: ProfilePageType, action: ActionType) => {
             state.posts.push(newPost)
             state.newPostText = ``
             return state;
-            break;
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText // TODO возможный ноль
             return state;
-            break;
-
         default:
             return state;
     }

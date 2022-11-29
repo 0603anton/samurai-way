@@ -1,4 +1,4 @@
-import React, {ChangeEvent, RefObject, useState} from 'react';
+import React, {ChangeEvent, RefObject} from 'react';
 import Post from './Post/Post';
 import {
 
@@ -16,8 +16,6 @@ const MyPosts = (props: MyPostPropsType) => {
     const postsElements = props.posts.map((el) => {
         return <Post id={el.id} message={el.message} likesCount={el.likesCount}/>
     })
-
-    const newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const onButtonClickAddPostHandler = () => {
         // let text = newPostElement.current ? newPostElement.current.value : `---` вместо этой строки if`ы

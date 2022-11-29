@@ -9,13 +9,11 @@ const dialogsReducer = (state: DialogsPageType, action: ActionType) => {
         case UPDATE_NEW_MESSAGE_DIALOG:
             state.newMessageText = action.newTextDialog
             return state;
-            break;
         case ADD_MESSAGE:
             let messageText = state.newMessageText
             state.messageData.push({id: 6, message: messageText});
             state.newMessageText = '';
             return state;
-            break;
         default:
             return state;
     }
