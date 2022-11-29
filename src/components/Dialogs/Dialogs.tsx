@@ -2,7 +2,7 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import _ from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {createNewMessageTextAC, DialogsPagePropsType} from '../../State/state';
+import {createNewMessageTextAC, addNewMessageTextAC, DialogsPagePropsType} from '../../State/state';
 
 export const Dialogs = (props: DialogsPagePropsType) => {
 
@@ -22,12 +22,13 @@ export const Dialogs = (props: DialogsPagePropsType) => {
     //
     const textAreanewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        let action = createNewMessageTextAC(text)
+        const action = createNewMessageTextAC(text)
         props.dispatch(action)
     }
 
     function addMessage(e: MouseEvent<HTMLButtonElement>) {
-
+        const action = addNewMessageTextAC()
+        props.dispatch(action)
     }
 
     return (
@@ -36,7 +37,8 @@ export const Dialogs = (props: DialogsPagePropsType) => {
                 <div className={_.companions}>
                     {dialogsElements}
                     <div>
-                        <textarea onChange={textAreanewMessageHandler}></textarea>
+                        <textarea value={props.newMessageText} onChange={textAreanewMessageHandler}></textarea>
+                        // забыл для чего в пропсы кидал newMesageText
                         <button onClick={addMessage}>Add</button>
                     </div>
                 </div>
