@@ -1,7 +1,8 @@
 // КОНСТАНТЫ
 import profileReducer, {ProfilePageActionType} from './profile-reducer';
 import dialogsReducer, {DialogsPageActionType} from './dialogs-reducer';
-import sidebarReducer from './sidebar-reducer';
+import {StateRootType} from "../index";
+
 
 export type ActionType = DialogsPageActionType | ProfilePageActionType
 
@@ -17,10 +18,10 @@ export type RootStorePropsType = {
 
 export type MyPostPropsType = {
     posts: PostType[]
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
+    addPost: () => void
+    updateNewPostText: (text: string) => void
     newPostText: string
-    dispatch: (action: ActionType) => void
+    // dispatch: (action: ActionType) => void
 }
 
 export type PostType = {
@@ -37,10 +38,11 @@ export type DialogsPageType = {
     sidebar: object
 }
 export type DialogsPagePropsType = {
-    dialogsData: CompanionType[]
-    messageData: MessageType[]
-    newMessageText: string
+    // dialogsData: CompanionType[]
+    // messageData: MessageType[]
+    // newMessageText: string
     dispatch: (action: ActionType) => void
+    store: StateRootType
 }
 
 export type CompanionType = {
@@ -73,9 +75,10 @@ export type RootStateType = {
 }
 
 export type ProfilePagePropsType = {
-    posts: PostType[]
+    // posts: PostType[]
     dispatch: (action: ActionType) => void
-    newPostText: string
+    // newPostText: string
+    store: StateRootType
 }
 
 
@@ -119,20 +122,7 @@ export const store: RootStorePropsType = {
     _callSubscriber(state: RootStateType) {
         console.log(`smth`)
     },
-    // _addPost() {
-    //     const newPost: PostType = {
-    //         id: 121,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 10
-    //     };
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ``
-    //     this._callSubscriber(this._state)
-    // },
-    // _updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = action.newText! // TODO возможный ноль
-    //     this._callSubscriber(this._state)
-    // },
+
     subscribe(observer: (state: RootStateType) => void) {
         this._callSubscriber = observer;
     },
@@ -141,7 +131,6 @@ export const store: RootStorePropsType = {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.dialogsPage.sidebar = sidebarReducer(this._state.dialogsPage.sidebar, action)
 
         this._callSubscriber(this._state)
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {ProfilePagePropsType} from '../../State/state';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+
 
 
 export const Profile = (props: ProfilePagePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts newPostText={props.newPostText}
-                     posts={props.posts}
+            <MyPostsContainer
+                // newPostText={props.newPostText}
+                //      posts={props.posts}
                      dispatch={props.dispatch}
-                     // addPost={props.addPostCallback}
+store={props.store}
+                     // addPost={props.addPost}
                      // updateNewPostText={props.updateNewPostText}
             />
         </div>

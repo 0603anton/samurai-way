@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {RootStateType, store} from './State/state';
+// import {RootStateType, store} from './State/state'; // тут из редакс стора
 import {BrowserRouter} from "react-router-dom";
+import store from "./State/redux-store";
 
 
-let rerenderEntireTree = (state: RootStateType) => {
+export type StateRootType = ReturnType<typeof store.getState>
+let rerenderEntireTree = (state: StateRootType) => { // здесь добавили автотипизацию
     ReactDOM.render(
         <BrowserRouter>
             <App state={state}
@@ -18,4 +20,4 @@ let rerenderEntireTree = (state: RootStateType) => {
 }
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(()=>rerenderEntireTree(store.getState()))

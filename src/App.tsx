@@ -3,12 +3,12 @@ import './App.css';
 import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
-import {Dialogs} from './components/Dialogs/Dialogs';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {StatePropsType, StateType} from './State/state';
+import {StatePropsType} from './State/state';
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
 function App(props: StatePropsType) {
@@ -20,17 +20,21 @@ function App(props: StatePropsType) {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs"
-                       render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
-                                              messageData={props.state.dialogsPage.messageData}
-                                              newMessageText={props.state.dialogsPage.newMessageText}
+                       render={() => <DialogsContainer
+                           // dialogsData={props.state.dialogsPage.dialogsData}
+                           //                    messageData={props.state.dialogsPage.messageData}
+                           //                    newMessageText={props.state.dialogsPage.newMessageText}
                                               dispatch={props.dispatch}
+                                              store={props.state}
                        />}/>
 
-                <Route path="/profile" render={() => <Profile posts={props.state.profilePage.posts}
+                <Route path="/profile" render={() => <Profile
+                    // posts={props.state.profilePage.posts}
                                                               dispatch={props.dispatch}
-                    // addPostCallback={props.addPost}
+                                                              store={props.state}
+                    // addPost={props}
                     // updateNewPostText={props.updateNewPostText}
-                                                              newPostText={props.state.profilePage.newPostText}
+                    //                                           newPostText={props.state.profilePage.newPostText}
                 />}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
