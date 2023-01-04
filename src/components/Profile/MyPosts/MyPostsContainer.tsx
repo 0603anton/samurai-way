@@ -2,9 +2,9 @@ import React from 'react';
 
 import {ActionType} from '../../../State/state';
 import {addPostActionCreator, updateNewPostTextAC} from '../../../State/profile-reducer';
-import MyPosts from "./MyPosts";
-import {StateRootType} from "../../../index";
-import StoreContext from "../../../StoreContext";
+import MyPosts from './MyPosts';
+import {StateRootType} from '../../../index';
+
 
 type MyPostsContainerPropsType = {
     // posts: PostType[]
@@ -15,9 +15,6 @@ type MyPostsContainerPropsType = {
 
 
 const MyPostsContainer = (props: MyPostsContainerPropsType) => {
-
-
-
 
 
     return (
@@ -33,12 +30,13 @@ const MyPostsContainer = (props: MyPostsContainerPropsType) => {
                     store.dispatch(action)
                 }
 
-               return <MyPosts
+                return <MyPosts
                     posts={store.getState().profilePage.posts} // тут данные уже не через пропс берутся а через контекст
                     updateNewPostText={onCnahgeTextAreaHandler}
                     addPost={onButtonClickAddPostHandler}
                     newPostText={store.getState().profilePage.newPostText}// тут данные уже не через пропс берутся а через контекст
-                />}
+                />
+            }
             }
         </StoreContext.Consumer>
     );

@@ -2,27 +2,27 @@ import React, {ChangeEvent} from 'react';
 import _ from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {CompanionType, MessageType} from '../../State/state';
+import {DialogsPropsTypePresent} from './DialogsContainer';
 
-export type DialogsPropsTypePresent = {
-    updateText: (text: string) => void
-    dialogsData: CompanionType[]
-    messageData: MessageType[]
-    newMessageText: string
-    addMessage: () => void
-
-}
+// export type DialogsPropsTypePresent = {
+//     updateText: (text: string) => void
+//     dialogsData: CompanionType[]
+//     messageData: MessageType[]
+//     newMessageText: string
+//     addMessage: () => void
+//
+// }
 
 export const Dialogs = (props: DialogsPropsTypePresent) => {
 
-    const dialogsElements = props.dialogsData.map((el) => {
+    const dialogsElements = props.dialogsPage.dialogsData.map((el) => {
         return (
             <DialogItem name={el.name} id={el.id}/>
         )
     })
 
 
-    const messagesElement = props.messageData.map((el) => {
+    const messagesElement = props.dialogsPage.messageData.map((el) => {
         return (
             <Message message={el.message} id={el.id}/>
         )
@@ -45,7 +45,7 @@ export const Dialogs = (props: DialogsPropsTypePresent) => {
                 <div className={_.companions}>
                     {dialogsElements}
                     <div>
-                        <textarea value={props.newMessageText}
+                        <textarea value={props.dialogsPage.newMessageText}
                                   onChange={textAreanewMessageHandler}></textarea>
                         {/*// забыл для чего в пропсы кидал newMesageText*/}
                         <button onClick={addMessage}>Add</button>

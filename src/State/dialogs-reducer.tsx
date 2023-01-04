@@ -1,9 +1,16 @@
-import {ActionType, DialogsPageType} from './state';
+import {ActionType, CompanionType, MessageType} from './state';
 
 const UPDATE_NEW_MESSAGE_DIALOG = `UPDATE-NEW-MESSAGE-DIALOG`
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-const initialState = {
+export type DialogsPageType = {
+    dialogsData: CompanionType[]
+    messageData: MessageType[]
+    newMessageText: string
+    sidebar: object
+}
+
+const initialState: DialogsPageType = {
     dialogsData: [
         {id: 1, name: 'companion1'},
         {id: 2, name: 'companion2'},
@@ -24,7 +31,7 @@ const initialState = {
     sidebar: {}
 }
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_DIALOG:

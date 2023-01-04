@@ -8,7 +8,7 @@ import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
 import {StatePropsType} from './State/state';
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 function App(props: StatePropsType) {
@@ -24,14 +24,14 @@ function App(props: StatePropsType) {
                            // dialogsData={props.state.dialogsPage.dialogsData}
                            //                    messageData={props.state.dialogsPage.messageData}
                            //                    newMessageText={props.state.dialogsPage.newMessageText}
-                                              dispatch={props.dispatch}
-                                              store={props.state}
+                           //                    dispatch={props.dispatch}
+                           //                    store={props.state}
                        />}/>
 
                 <Route path="/profile" render={() => <Profile
                     // posts={props.state.profilePage.posts}
-                                                              dispatch={props.dispatch}
-                                                              store={props.state}
+                    // dispatch={props.dispatch}
+                    // store={props.state}
                     // addPost={props}
                     // updateNewPostText={props.updateNewPostText}
                     //                                           newPostText={props.state.profilePage.newPostText}

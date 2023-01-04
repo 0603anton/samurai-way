@@ -1,7 +1,6 @@
 // КОНСТАНТЫ
 import profileReducer, {ProfilePageActionType} from './profile-reducer';
-import dialogsReducer, {DialogsPageActionType} from './dialogs-reducer';
-import {StateRootType} from "../index";
+import dialogsReducer, {DialogsPageActionType, DialogsPageType} from './dialogs-reducer';
 
 
 export type ActionType = DialogsPageActionType | ProfilePageActionType
@@ -31,18 +30,12 @@ export type PostType = {
 }
 
 
-export type DialogsPageType = {
-    dialogsData: CompanionType[]
-    messageData: MessageType[]
-    newMessageText: string
-    sidebar: object
-}
 export type DialogsPagePropsType = {
     // dialogsData: CompanionType[]
     // messageData: MessageType[]
     // newMessageText: string
-    dispatch: (action: ActionType) => void
-    store: StateRootType
+    // dispatch: (action: ActionType) => void
+    // store: StateRootType
 }
 
 export type CompanionType = {
@@ -65,8 +58,8 @@ export type StateType = {
 }
 
 export type StatePropsType = {
-    state: RootStateType
-    dispatch: (action: ActionType) => void
+    // state: RootStateType
+    // dispatch: (action: ActionType) => void
 }
 
 export type RootStateType = {
@@ -76,9 +69,9 @@ export type RootStateType = {
 
 export type ProfilePagePropsType = {
     // posts: PostType[]
-    dispatch: (action: ActionType) => void
+    // dispatch: (action: ActionType) => void
     // newPostText: string
-    store: StateRootType
+    // store: StateRootType
 }
 
 
