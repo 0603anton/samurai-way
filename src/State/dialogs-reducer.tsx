@@ -35,13 +35,12 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionTyp
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_DIALOG:
-            state.newMessageText = action.newTextDialog
-            return state;
+            return {...state, newMessageText:action.payload.text}
         case ADD_MESSAGE:
             let messageText = state.newMessageText
-            state.messageData.push({id: 6, message: messageText});
-            state.newMessageText = '';
-            return state;
+            // state.messageData.push({id: 6, message: messageText});
+            // state.newMessageText = '';
+            return {...state, messageData:[...state.messageData,{id: 6, message: messageText} ], newMessageText:``}
         default:
             return state;
     }
@@ -55,7 +54,9 @@ export type DialogsPageActionType =
 export const createNewMessageTextAC = (text: string) => {
     return {
         type: UPDATE_NEW_MESSAGE_DIALOG,
-        newTextDialog: text
+        payload:{
+            text
+        }
     } as const
 }
 

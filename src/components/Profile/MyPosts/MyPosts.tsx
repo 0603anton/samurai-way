@@ -1,14 +1,15 @@
 import React, {ChangeEvent} from 'react';
 import Post from './Post/Post';
-import {MyPostPropsType,} from '../../../State/state';
+
+import {DialogsPropsTypePresent} from "./MyPostsContainer";
 
 
-const MyPosts = (props: MyPostPropsType) => {
+const MyPosts = (props: DialogsPropsTypePresent) => {
 
     //реализация через use state
     // const [text, setText] = useState<string>(``)
 
-    const postsElements = props.posts.map((el) => {
+    const postsElements = props.profilePage.posts.map((el) => {
         return <Post id={el.id} message={el.message} likesCount={el.likesCount}/>
     })
 
@@ -20,7 +21,8 @@ const MyPosts = (props: MyPostPropsType) => {
 
     function onCnahgeTextAreaHandler(e: ChangeEvent<HTMLTextAreaElement>) {
         let text = e.currentTarget.value
-        props.updateNewPostText(text)
+        // props.updateNewPostText(text)
+        props.updateText(text)
         // let action = updateNewPostTextAC(text)
         // props.dispatch(action)
     }
@@ -32,7 +34,7 @@ const MyPosts = (props: MyPostPropsType) => {
             <div>
                 {/*<textarea onChange={onCnahgeTextAreaHandler}></textarea>*/}
                 {/*<textarea onChange={onPostChangeHandler} ref={newPostElement} value={props.newPostText}/>*/}
-                <textarea onChange={onCnahgeTextAreaHandler} value={props.newPostText}/>
+                <textarea onChange={onCnahgeTextAreaHandler} value={props.profilePage.newPostText}/>
             </div>
             <div>
                 <button onClick={onButtonClickAddPostHandler}>Add post</button>

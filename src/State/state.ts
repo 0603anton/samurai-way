@@ -1,5 +1,5 @@
 // КОНСТАНТЫ
-import profileReducer, {ProfilePageActionType} from './profile-reducer';
+import profileReducer, {ProfilePageActionType, ProfilePageType} from './profile-reducer';
 import dialogsReducer, {DialogsPageActionType, DialogsPageType} from './dialogs-reducer';
 
 
@@ -48,10 +48,7 @@ export type MessageType = {
     message: string
 }
 
-export type ProfilePageType = {
-    posts: PostType[]
-    newPostText: string
-}
+
 
 export type StateType = {
     state: RootStateType
