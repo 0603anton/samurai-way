@@ -2,17 +2,15 @@ import React from 'react';
 import {ActionType} from '../../../State/state';
 import {addPostActionCreator, ProfilePageType, updateNewPostTextAC} from '../../../State/profile-reducer';
 import MyPosts from './MyPosts';
-import {StateRootType} from '../../../index';
-import {connect} from "react-redux";
-import {AppStateType} from "../../../State/redux-store";
-import {Dispatch} from "redux";
-
+import {connect} from 'react-redux';
+import {AppStateType} from '../../../State/redux-store';
+import {Dispatch} from 'redux';
 
 
 type MyPostsContainerPropsType = {
     // posts: PostType[]
     // newPostText: string
-    store: StateRootType
+    store: AppStateType
     dispatch: (action: ActionType) => void
 }
 
