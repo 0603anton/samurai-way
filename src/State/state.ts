@@ -1,18 +1,15 @@
 // КОНСТАНТЫ
 import profileReducer, {ProfilePageActionType, ProfilePageType} from './profile-reducer';
 import dialogsReducer, {DialogsPageActionType, DialogsPageType} from './dialogs-reducer';
+import {UserPageActionType} from './users-reducer';
 
-
-export type ActionType = DialogsPageActionType | ProfilePageActionType
 
 export type RootStorePropsType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: (state: RootStateType) => void
-    // _addPost: () => void
-    // _updateNewPostText: (newText: string) => void
     subscribe: (observer: (state: RootStateType) => void) => void
-    dispatch: (action: ActionType) => void
+    // dispatch: (action: ActionType) => void
 }
 
 export type MyPostPropsType = {
@@ -20,7 +17,6 @@ export type MyPostPropsType = {
     addPost: () => void
     updateNewPostText: (text: string) => void
     newPostText: string
-    // dispatch: (action: ActionType) => void
 }
 
 export type PostType = {
@@ -29,14 +25,6 @@ export type PostType = {
     likesCount: number
 }
 
-
-export type DialogsPagePropsType = {
-    // dialogsData: CompanionType[]
-    // messageData: MessageType[]
-    // newMessageText: string
-    // dispatch: (action: ActionType) => void
-    // store: StateRootType
-}
 
 export type CompanionType = {
     name: string
@@ -47,7 +35,6 @@ export type MessageType = {
     id: number
     message: string
 }
-
 
 
 export type StateType = {
@@ -62,13 +49,6 @@ export type StatePropsType = {
 export type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
-}
-
-export type ProfilePagePropsType = {
-    // posts: PostType[]
-    // dispatch: (action: ActionType) => void
-    // newPostText: string
-    // store: StateRootType
 }
 
 
@@ -117,14 +97,14 @@ export const store: RootStorePropsType = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action) { // {type:`ADD-POST`}
-
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-
-        this._callSubscriber(this._state)
-
-    },
+    // dispatch(action) { // {type:`ADD-POST`}
+    //
+    //     this._state.profilePage = profileReducer(this._state.profilePage, action)
+    //     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    //
+    //     this._callSubscriber(this._state)
+    //
+    // },
 
 }
 

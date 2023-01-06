@@ -6,25 +6,18 @@ import {DialogsPropsTypePresent} from "./MyPostsContainer";
 
 const MyPosts = (props: DialogsPropsTypePresent) => {
 
-    //реализация через use state
-    // const [text, setText] = useState<string>(``)
-
     const postsElements = props.profilePage.posts.map((el) => {
         return <Post id={el.id} message={el.message} likesCount={el.likesCount}/>
     })
 
     const onButtonClickAddPostHandler = () => {
         props.addPost()
-        // props.dispatch(addPostActionCreator())
     }
 
 
     function onCnahgeTextAreaHandler(e: ChangeEvent<HTMLTextAreaElement>) {
         let text = e.currentTarget.value
-        // props.updateNewPostText(text)
         props.updateText(text)
-        // let action = updateNewPostTextAC(text)
-        // props.dispatch(action)
     }
 
 

@@ -1,4 +1,6 @@
-import {ActionType, PostType} from './state';
+import {ActionType} from './redux-store';
+import {PostType} from './state';
+
 
 const ADD_POST = `ADD-POST`
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -8,7 +10,7 @@ export type ProfilePageType = {
     newPostText: string
 }
 
-const initialState:ProfilePageType =  {
+const initialState: ProfilePageType = {
     posts: [
         {id: 1, message: 'How, are you?', likesCount: 15},
         {id: 2, message: 'It`s my first post', likesCount: 5},
@@ -30,9 +32,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
                 likesCount: 10
             };
 
-            return {...state, posts:[...state.posts, newPost], newPostText:``}
+            return {...state, posts: [...state.posts, newPost], newPostText: ``}
         case UPDATE_NEW_POST_TEXT:
-            return {...state,newPostText: action.payload.text}
+            return {...state, newPostText: action.payload.text}
         default:
             return state;
     }
@@ -52,7 +54,7 @@ export const addPostActionCreator = () => {
 export const updateNewPostTextAC = (text: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
-        payload:{
+        payload: {
             text
         }
         // newText: text

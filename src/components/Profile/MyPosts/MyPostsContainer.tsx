@@ -1,48 +1,10 @@
 import React from 'react';
-import {ActionType} from '../../../State/state';
+
 import {addPostActionCreator, ProfilePageType, updateNewPostTextAC} from '../../../State/profile-reducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../State/redux-store';
 import {Dispatch} from 'redux';
-
-
-type MyPostsContainerPropsType = {
-    // posts: PostType[]
-    // newPostText: string
-    store: AppStateType
-    dispatch: (action: ActionType) => void
-}
-
-// const MyPostsContainer = (props: MyPostsContainerPropsType) => {
-//
-//
-//     return (
-//         <StoreContext.Consumer>
-//             {(store) => {
-//                 const onButtonClickAddPostHandler = () => {
-//                     // props.addPost()
-//                     store.dispatch(addPostActionCreator())
-//                 }
-//
-//                 function onCnahgeTextAreaHandler(text: string) {
-//                     let action = updateNewPostTextAC(text)
-//                     store.dispatch(updateNewPostTextAC(text))
-//                 }
-//
-//                 return <MyPosts
-//                     posts={store.getState().profilePage.posts} // тут данные уже не через пропс берутся а через контекст
-//                     updateNewPostText={onCnahgeTextAreaHandler}
-//                     addPost={onButtonClickAddPostHandler}
-//                     newPostText={store.getState().profilePage.newPostText}// тут данные уже не через пропс берутся а через контекст
-//                 />
-//             }
-//             }
-//         </StoreContext.Consumer>
-//     );
-// };
-
-// export default MyPostsContainer;
 
 type mapStateToPropsTypeProfilePage = {
     profilePage: ProfilePageType
