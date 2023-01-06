@@ -29,11 +29,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
                 message: state.newPostText,
                 likesCount: 10
             };
-            // state.posts.push(newPost)
-            // state.newPostText = ``
+
             return {...state, posts:[...state.posts, newPost], newPostText:``}
         case UPDATE_NEW_POST_TEXT:
-            // state.newPostText = action.payload.text // TODO возможный ноль
             return {...state,newPostText: action.payload.text}
         default:
             return state;
