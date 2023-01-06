@@ -5,7 +5,7 @@ import {Dispatch} from 'redux';
 import {followAC, setUsersAC, unfollowAC, UserPageType, UserType} from '../../State/users-reducer';
 
 type mapStateToPropsType = {
-    userPage: UserPageType
+    users: UserType[]
 }
 
 type mapDispatchToPropsType = {
@@ -16,12 +16,14 @@ type mapDispatchToPropsType = {
 
 export type UsersPropsTypePresent = mapStateToPropsType & mapDispatchToPropsType
 
-
+// для передачи данных
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        userPage: state.userPage
-    }
+        users: state.userPage.users
+    } // сюда только те данные которые дейтсвительно нужны в пропсах не надо весь стейт туда кидать
 }
+
+// для передачи коллбэков
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         follow: (userId: number) => {
