@@ -13,7 +13,7 @@ export type UserPageType = {
 
 export type UserType = {
     id: number
-    photoUrl:string
+    photoUrl: string
     followed: boolean
     fullName: string
     status: string
@@ -29,38 +29,38 @@ export type LocationType = {
 
 const initialState: UserPageType = {
     users: [
-        {
-            id: 1,
-            photoUrl: "https://cdn-icons-png.flaticon.com/64/2202/2202112.png",
-            followed: true,
-            fullName: 'Anton',
-            status: 'I like CODE',
-            location: {city: `Moscow`, country: `Russia`}
-        },
-        {
-            id: 2,
-            photoUrl: "https://cdn-icons-png.flaticon.com/64/2202/2202112.png",
-            followed: true,
-            fullName: 'Anton',
-            status: 'I like CODE',
-            location: {city: `Moscow`, country: `Russia`}
-        },
-        {
-            id: 3,
-            photoUrl: "https://cdn-icons-png.flaticon.com/64/2202/2202112.png",
-            followed: false,
-            fullName: 'Anton',
-            status: 'I like CODE',
-            location: {city: `Moscow`, country: `Russia`}
-        },
-        {
-            id: 4,
-            photoUrl: "https://cdn-icons-png.flaticon.com/64/2202/2202112.png",
-            followed: false,
-            fullName: 'Anton',
-            status: 'I like CODE',
-            location: {city: `Moscow`, country: `Russia`}
-        },
+        // {
+        //     id: 1,
+        //     photoUrl: 'https://cdn-icons-png.flaticon.com/64/2202/2202112.png',
+        //     followed: true,
+        //     fullName: 'Anton',
+        //     status: 'I like CODE',
+        //     location: {city: `Moscow`, country: `Russia`}
+        // },
+        // {
+        //     id: 2,
+        //     photoUrl: 'https://cdn-icons-png.flaticon.com/64/2202/2202112.png',
+        //     followed: true,
+        //     fullName: 'Anton',
+        //     status: 'I like CODE',
+        //     location: {city: `Moscow`, country: `Russia`}
+        // },
+        // {
+        //     id: 3,
+        //     photoUrl: 'https://cdn-icons-png.flaticon.com/64/2202/2202112.png',
+        //     followed: false,
+        //     fullName: 'Anton',
+        //     status: 'I like CODE',
+        //     location: {city: `Moscow`, country: `Russia`}
+        // },
+        // {
+        //     id: 4,
+        //     photoUrl: 'https://cdn-icons-png.flaticon.com/64/2202/2202112.png',
+        //     followed: false,
+        //     fullName: 'Anton',
+        //     status: 'I like CODE',
+        //     location: {city: `Moscow`, country: `Russia`}
+        // },
     ]
 }
 
@@ -79,7 +79,7 @@ export const userReducer = (state: UserPageType = initialState, action: ActionTy
                 ...state,
                 users: state.users.map((el) => el.id === action.payload.userId ? {...el, followed: !el.followed} : el)
             }
-        case 'SET_USERS': {
+        case SET_USERS: {
             return {...state, users: [...state.users, ...action.payload.users]}
         }
         default:
