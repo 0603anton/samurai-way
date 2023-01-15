@@ -12,12 +12,21 @@ export type UserPageType = {
 }
 
 export type UserType = {
+    // id: number
+    // photoUrl: string
+    // followed: boolean
+    // fullName: string
+    // status: string
+    // location: LocationType
+    name: string
     id: number
-    photoUrl: string
+    uniqueUrlName: null
+    photos: {
+        small: string
+        large: string
+    }
+    status: null
     followed: boolean
-    fullName: string
-    status: string
-    location: LocationType
 }
 
 export type LocationType = {
